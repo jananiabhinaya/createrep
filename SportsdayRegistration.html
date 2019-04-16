@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>Sports day Registration</title>
+</head>
+<body>
+<form>
+Name:
+<input type="text" id="textbox1"><br><br>
+Employee ID
+<input type="text" id="textbox2"><br><br>
+<input type="radio"  id="radiobutton1" name="radiobutton" value="1" onclick="events()">Indoor events
+<select id="dropdown1" disabled>
+<option value=""></option>
+<option value="table">table tennis</option>
+<option value="carom">carom</option>
+<option value="chess">chess</option>
+</select>
+<input type="button" id="button1" value="Register1"  disabled onclick="selectedevents1()"><br><br>
+<input type="radio" id="radiobutton2" name="radiobutton" value="2" onclick="events()">Outdoor events
+<select id="dropdown2" disabled>
+<option value=""></option>
+<option value="cricket">cricket</option>
+<option value="badminton">badminton</option>
+<option value="volley ball">volley ball</option>
+</select>
+<input type="button" id="button2" value="Register2" disabled onclick="selectedevents2()">
+</form>
+<script>
+var Indoor=0;
+var Outdoor=0;
+var total=0;
+var eventname=[];
+function events()
+{
+  var radio=document.getElementsByName("radiobutton"); 
+  var radio1;
+   for( var i=0;i<radio.length;i++)
+   {
+      if(radio[i].checked)
+	  {
+	    radio1=radio[i].value;
+	  }
+	}
+   
+  if(radio1==1)
+    {
+		document.getElementById("dropdown1").disabled=false;
+		document.getElementById("button1").disabled=false;
+		document.getElementById("dropdown2").disabled=true;
+		document.getElementById("button2").disabled=true;
+	}
+  else
+  {
+    document.getElementById("dropdown1").disabled=true;
+	document.getElementById("button1").disabled=true;
+  }
+  if(radio1==2)
+   {
+		document.getElementById("dropdown2").disabled=false;
+		document.getElementById("button2").disabled=false;
+		document.getElementById("dropdown1").disabled=true;
+		document.getElementById("button1").disabled=true;
+	}
+   else
+   {
+    document.getElementById("dropdown2").disabled=true;
+	document.getElementById("button2").disabled=true;
+   }
+ }
+function selectedevents1()
+{
+	if(total<3)
+	{
+		if(Indoor<2)
+		{
+			alert("you have register"+(Indoor+1)+"events from Indoor");
+			Indoor=Indoor+1;
+			total=Indoor+Outdoor;
+		}
+		if(Indoor==2)
+		{
+			alert("you have register for 2 indooractivity.please select an activity from Outdoor category");
+		}
+	}
+   if(total==3)
+   {
+    alert("you have register for three events successfully");
+   }
+}
+function selectedevents2()
+{
+  if(total<3)
+  {
+   if(Outdoor<2)
+    {
+		alert("you have register"+(Outdoor+1)+"events from Outdoor");
+		Outdoor=Outdoor+1;
+		total=Indoor+Outdoor;
+	}
+   if(Outdoor==2)
+	{
+		alert("you have register for 2 Outdooractivity.please select an activity from Indoor category");
+	}
+  }
+  if(total==3)
+  {
+    alert("you have register for three events successfully")
+  }
+ }
+</script>
+</body>
+</html>
